@@ -7,38 +7,47 @@ Mezei Dávid, Óvári Tamás
 import random as r
 
 print("""
- *      _________              .__          ___.                       
- *     /   _____/_______ _____ |  |__ _____ \_ |__   ___________ __ __ 
- *     \_____  \\___   //     \|  |  \\__  \ | __ \ /  _ \_  __ \  |  \
- *     /        \/    /|  Y Y  \   Y  \/ __ \| \_\ (  <_> )  | \/  |  /
- *    /_______  /_____ \__|_|  /___|  (____  /___  /\____/|__|  |____/ 
- *            \/      \/     \/     \/     \/    \/                    
+  /$$$$$$                         /$$                 /$$                                    
+ /$$__  $$                       | $$                | $$                                    
+| $$  \__//$$$$$$$$ /$$$$$$/$$$$ | $$$$$$$   /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$  /$$   /$$
+|  $$$$$$|____ /$$/| $$_  $$_  $$| $$__  $$ |____  $$| $$__  $$ /$$__  $$ /$$__  $$| $$  | $$
+ \____  $$  /$$$$/ | $$ \ $$ \ $$| $$  \ $$  /$$$$$$$| $$  \ $$| $$  \ $$| $$  \__/| $$  | $$
+ /$$  \ $$ /$$__/  | $$ | $$ | $$| $$  | $$ /$$__  $$| $$  | $$| $$  | $$| $$      | $$  | $$
+|  $$$$$$//$$$$$$$$| $$ | $$ | $$| $$  | $$|  $$$$$$$| $$$$$$$/|  $$$$$$/| $$      |  $$$$$$/
+ \______/|________/|__/ |__/ |__/|__/  |__/ \_______/|_______/  \______/ |__/       \______/ 
 """)
+
+nyertes = 0
+vesztes = 0
+dontetlen = 0
 
 game = True
 
 print("Üdv a számháború játékban!")
-choices = [1, 2, 3, 4, 5, 6]
 
 
-computer_num = r.randint(1-7)
 
-while True:
+while game:
 
+    computer_num = r.randint(1, 7)
+
+    choice = int(input("Kérek egy számot! (1-6): "))
+    while choice not in range(1,7):
+        print("Kérlek a megadott intervallumból adj meg egy számot!")        
         choice = int(input("Kérek egy számot! (1-6): "))
-        if choice not in choices:
-            print("Kérlek, a megadott tartományban adj meg számot!")
-            continue
-        break  # Kilépünk a ciklusból, mert helyes számot kaptunk
 
+    if choice < computer_num:
+        print("Vesztettél!")
+        vesztes += 1
+    elif choice > computer_num:
+        print("Nyertél")
+        nyertes += 1
+    elif choice == computer_num:
+        print("Döntetlen")
+        vesztes += 1
 
-if choice < computer_num:
-    print("Vesztettél!")
+    folyt = input("Szeretnél tovább játszani? (i/n) ")
 
-elif choice > computer_num:
-    print("Vesztettél")
-
-elif choice == computer_num:
-    print("Döntetlen")
-
-folyt = input("Szeretnél tovább játszani?(i/n) ")
+    if folyt == "n".lower():
+        print(f"Vége a játéknak! Nyertes játékok: {nyertes}, Vesztes játékok: {vesztes}, Döntetlen játékok: {dontetlen}")
+        game = False
