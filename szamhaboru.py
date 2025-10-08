@@ -18,17 +18,27 @@ print("""
 game = True
 
 print("Üdv a számháború játékban!")
-
 choices = [1, 2, 3, 4, 5, 6]
-while game:     
-    try:
-        # A felhasználó beadott adatait kezeljük
-
-        choices = input("Kérek egy számot!(1-6) ")
-
-        while choices.lower() not in [1, 2, 3, 4, 5, 6]:
-            print("Kérlek megfelelő választ adj meg!")
-            choices = input("Kérek egy számot!(1-6) ")
 
 
+computer_num = r.randint(1-7)
 
+while True:
+
+        choice = int(input("Kérek egy számot! (1-6): "))
+        if choice not in choices:
+            print("Kérlek, a megadott tartományban adj meg számot!")
+            continue
+        break  # Kilépünk a ciklusból, mert helyes számot kaptunk
+
+
+if choice < computer_num:
+    print("Vesztettél!")
+
+elif choice > computer_num:
+    print("Vesztettél")
+
+elif choice == computer_num:
+    print("Döntetlen")
+
+folyt = input("Szeretnél tovább játszani?(i/n) ")
