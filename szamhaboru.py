@@ -29,7 +29,8 @@ print("Üdv a számháború játékban!")
 
 while game:
 
-    computer_num = r.randint(1, 7)
+    computer_num = r.randint(1, 6)
+    print(computer_num)
 
     choice = int(input("Kérek egy számot! (1-6): "))
     while choice not in range(1,7):
